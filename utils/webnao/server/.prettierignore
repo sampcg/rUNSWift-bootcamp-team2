@@ -1,0 +1,4 @@
+node_modules
+.dumps
+
+# add any build artifacts here, we dont want to format compiled code

@@ -1,0 +1,5 @@
+node_modules
+.parcel-cache
+dist
+
+# add any build artifacts here, we dont want to format compiled code

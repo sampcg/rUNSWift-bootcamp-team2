@@ -1,0 +1,11 @@
+*.cpp text=auto eol=lf
+*.hpp text=auto eol=lf
+*.py text=auto eol=lf
+
+*.wav binary
+*.png binary
+*.pdf binary
+*.gmm binary
+*.ttf binary
+*.pca binary
+*.pkl binary

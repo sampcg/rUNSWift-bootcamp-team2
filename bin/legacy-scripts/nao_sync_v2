@@ -1,0 +1,38 @@
+#!/bin/bash
+REALPATH="$(realpath "$0")"
+BIN_DIR="$(dirname "$REALPATH")"
+
+CONTROL_SOCKET="/tmp/control_%C"
+SSH="ssh -o ControlMaster=auto -o ControlPath=$CONTROL_SOCKET -o ControlPersist=1m"
+SCP="scp -o ControlPath=$CONTROL_SOCKET"
+RUNSWIFT_DIR="$BIN_DIR/.."
+
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <robot host or ip>"
+    echo "Example: $0 aragorn"
+    exit 1
+fi
+
+if [ "$#" -eq 1 ]; then
+   hostname="$1"
+fi
+
+cleanup() {
+    # Cleanup the control master
+    ssh -o ControlPath=$CONTROL_SOCKET -O exit nao@$hostname 2>/dev/null
+}
+
+# Register the cleanup function to be called on script exit
+trap cleanup EXIT
+
+# Start the control master
+$SSH -N -f nao@$hostname
+$SSH nao@$hostname 'rm -rf /home/nao/data && rm -rf /home/nao/bin && mkdir -p /home/nao/bin'
+$SCP -r $RUNSWIFT_DIR/image/home/nao/bin nao@$hostname:/home/nao/
+$SCP $RUNSWIFT_DIR/build-relwithdebinfo-native/robot/runswift nao@$hostname:/home/nao/bin/
+$SCP -r $RUNSWIFT_DIR/image/home/nao/data nao@$hostname:/home/nao/
+$SCP -r $RUNSWIFT_DIR/image/home/nao/whistle nao@$hostname:/home/nao/
+$SCP -r $RUNSWIFT_DIR/image/home/nao/.bashrc_ubuntu nao@$hostname:/home/nao/.bashrc
+$SCP $RUNSWIFT_DIR/image/home/nao/runswift.commit.sha nao@$hostname:/home/nao/runswift.commit.sha
+$SCP $RUNSWIFT_DIR/image/home/nao/runswift.build.time nao@$hostname:/home/nao/runswift.build.time
+# $SSH nao@$hostname 'systemctl --user restart runswift.service'

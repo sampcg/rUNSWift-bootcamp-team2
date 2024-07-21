@@ -1,0 +1,53 @@
+{
+  "name": "webapp-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html --open",
+    "format": "prettier . --write",
+    "check-format": "prettier . --check",
+    "protobuf-gen": "npx protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_opt=esModuleInterop=true --ts_proto_out=. src/common/blackboard/definitions/Blackboard.proto",
+    "protobuf-gen-win": "npx protoc --plugin=\".\\\\node_modules\\\\.bin\\\\protoc-gen-ts_proto.cmd\" --ts_proto_opt=esModuleInterop=true --ts_proto_out=. src\\common\\blackboard\\definition\\Blackboard.proto"
+  },
+  "author": "rUNSWift team",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.0",
+    "@pixi/react": "^7.1.0",
+    "@react-three/drei": "^9.105.6",
+    "@react-three/fiber": "^8.16.3",
+    "@techstark/opencv-js": "^4.9.0-release.3",
+    "byte-base64": "^1.1.0",
+    "pixi.js": "^7.2.4",
+    "protobufjs": "^7.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.11.1",
+    "recharts": "^2.6.2",
+    "three": "^0.164.1",
+    "urdf-loader": "^0.12.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@types/three": "^0.164.0",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "parcel": "^2.8.3",
+    "prettier": "3.3.2",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "punycode": "^1.4.1",
+    "querystring-es3": "^0.2.1",
+    "stream-browserify": "^3.0.0",
+    "string_decoder": "^1.3.0",
+    "ts-proto": "^1.169.1",
+    "typescript": "^5.0.4",
+    "vm-browserify": "^1.1.2"
+  }
+}

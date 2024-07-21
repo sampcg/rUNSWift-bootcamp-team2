@@ -1,0 +1,9 @@
+repositories:
+  nao:
+    type: git
+    url: https://github.com/ijnek/nao.git
+    version: iron
+  naosoccer_pos_action:
+    type: git
+    url: https://github.com/ijnek/naosoccer_pos_action.git
+    version: iron

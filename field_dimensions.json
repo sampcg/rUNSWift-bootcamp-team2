@@ -1,0 +1,20 @@
+{
+  "field": {
+    "length": 9.07,
+    "width": 6.056,
+    "penaltyCrossSize": 0.1,
+    "goalBoxAreaLength": 0.6,
+    "goalBoxAreaWidth": 2.27,
+    "penaltyAreaLength": 1.708,
+    "penaltyAreaWidth": 4.09,
+    "penaltyCrossDistance": 1.28,
+    "centerCircleDiameter": 1.55,
+    "borderStripWidth": 0.638
+  },
+  "goal": {
+    "postDiameter": 0.1,
+    "height": 0.8,
+    "innerWidth": 1.5,
+    "depth": 0.435
+  }
+}

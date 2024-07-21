@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Start gamecontroller
+if pgrep "gamecontroller" > /dev/null
+then
+    echo "gamecontroller is already running!"
+else
+    echo "Starting gamecontroller..."
+    gamecontroller &
+    echo "Started gamecontroller."
+fi

@@ -1,0 +1,41 @@
+diff --git a/generate_image.sh b/generate_image.sh
+index 9d131f0..73582c4 100755
+--- a/generate_image.sh
++++ b/generate_image.sh
+@@ -44,7 +44,9 @@ if [ -d ./root ]; then
+     umount -q ./root/sys || [ $? == 32 ]
+     umount -q ./root/proc || [ $? == 32 ]
+     umount -q ./nao || [ $? == 32 ]
+-    rm -r root/
++    if [ -z "$(ls -A `realpath ./root`)" ]; then
++        rm -r `realpath ./root`/*
++    fi
+ fi
+ 
+ # check for base system from previous run
+@@ -53,7 +55,7 @@ if [ -f ./root.tgz ]; then
+     read -p "Use base system from previous run? (y/n) " yn
+     case $yn in
+         [Yy]* )
+-            tar -I pigz -xpf ./root.tgz
++            tar -I pigz -xpf ./root.tgz -C ./root/
+             SKIP_BASE_SNIPPETS=true
+             ;;
+         [Nn]* )
+@@ -86,6 +88,6 @@ rm -r ./root/var/lib/apt/lists/* ./root/var/log/* ./root/var/cache/*
+ 
+ echo "Installation done! Generate filesystem..."
+ # generate filesystem with correct UUID and maximum size for Nao's system partition
+-mke2fs -F -U 42424242-1120-1120-1120-424242424242 -L "NaoDevils-system" -b 4096 -t ext3 -d ./root "$OUTPUT_IMAGE" 999168
++mke2fs -F -U 42424242-1120-1120-1120-424242424242 -L "NaoDevils-system" -b 4096 -t ext3 -d `realpath ./root` "$OUTPUT_IMAGE" 999168
+ 
+ echo "Done!"
+diff --git a/snippets/save-base.sh b/snippets/save-base.sh
+index a429ba5..e879697 100644
+--- a/snippets/save-base.sh
++++ b/snippets/save-base.sh
+@@ -1,3 +1,3 @@
+ rm -f root.tgz
+ 
+-tar -I pigz -cpf ./root.tgz ./root
++tar -I pigz -cpf ./root.tgz -C `realpath ./root` .

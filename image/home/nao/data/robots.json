@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "robots": [
+    {
+      "head_id": "123ABC",
+      "name": "aragorn",
+      "model": "v6",
+      "lan": {
+        "type": "dhcp"
+      },
+      "wlan": {
+        "type": "static",
+        "ip": "10.0.18.139"
+      }
+    }
+  ]
+}

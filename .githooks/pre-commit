@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bin/runswift_py_format.sh
+bin/runswift_test.sh --python-files-only
