@@ -66,18 +66,6 @@ class Game(BehaviourTask):
     def _transition(self):
         if penalised() or in_initial() or in_standby() or in_finished():
             self._current_sub_task = "Stand"
-        elif self._should_be_penalty_striker():
-            if in_set():
-                self._current_sub_task = "Stand"
-            else:
-                self._current_sub_task = "PenaltyStriker"
-        elif self._should_be_penalty_goalie():
-            if in_set():
-                self._current_sub_task = "GoalieStand"
-            else:
-                self._current_sub_task = "PenaltyGoalie"
-        elif not player_one_is_field_player() and my_player_number() == 1:
-            self._current_sub_task = "Goalie"
         else:
             self._current_sub_task = "FieldPlayer"
 
