@@ -1,12 +1,6 @@
 from BehaviourTask import BehaviourTask
-from head.HeadSkillBallPlayer import HeadSkillBallPlayer
-from head.HeadSkillAnticipate import HeadSkillAnticipate
 from head.HeadCentre import HeadCentre
 from head.HeadLocalise import HeadLocalise
-from head.HeadPenaltyStriker import HeadPenaltyStriker
-from head.HeadPenaltyGoalie import HeadPenaltyGoalie
-from head.HeadGlobalScanRobots import HeadGlobalScanRobots
-from head.HeadLookAtReferee import HeadLookAtReferee
 from util.GameStatus import GameState, GamePhase, game_state, game_phase
 from util.Global import usingGameSkill, getCurrentSkill
 from util.GameStatus import we_are_kicking_team, penalised
