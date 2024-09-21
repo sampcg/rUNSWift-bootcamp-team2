@@ -55,21 +55,8 @@ class Game(BehaviourTask):
         # Chest led must follow the rules in the rulebook
         if penalised():
             self.world.b_request.actions.leds.chestButton = LEDColour.red
-            if not in_penaltyshoot_phase():
-                if secs_till_unpenalised() == 0:
-                    robot.say("Unpenalise me")
-                elif secs_till_unpenalised() == 10:
-                    robot.say("Unpenalise me in")
-                elif secs_till_unpenalised() < 10:
-                    if self._last_said_number is not secs_till_unpenalised():
-                        robot.say(str(secs_till_unpenalised()))
-                        self._last_said_number = secs_till_unpenalised()
         else:
             self.world.b_request.actions.leds.chestButton = self.GC_STATE_TO_CHEST_LED_MAP[game_state()]
-
-        # Use foot leds to indicate if we're kicking off (debugging purpose)
-        self.world.b_request.actions.leds.leftFoot = LEDColour.white if we_are_kicking_team() else LEDColour.off
-        self.world.b_request.actions.leds.rightFoot = LEDColour.white if we_are_kicking_team() else LEDColour.off
 
         # Update kick off timer
         if prev_game_state() is GameState.SET and game_state() is GameState.PLAYING:
