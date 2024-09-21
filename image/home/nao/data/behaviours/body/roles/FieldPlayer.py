@@ -16,14 +16,6 @@ from util.FieldGeometry import (
 from util.Timer import WallTimer
 from util import LedOverride
 
-OPPONENT_GOAL_CENTRE = Vector2D(FIELD_LENGTH / 2, 0)
-KICK_OFF_MIN_DISTANCE = CENTER_CIRCLE_DIAMETER / 2 - 200
-CENTER_DIVE_THRES = 200
-DANGEROUS_BALL_THRES = 300
-DIVE_VEL_THRES = 50
-FREE_KICK_TARGET = ENEMY_GOAL_BEHIND_CENTER.add(Vector2D(0, 200))
-
-
 class FieldPlayer(BehaviourTask):
     def _initialise_sub_tasks(self):
         self._sub_tasks = {
