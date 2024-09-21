@@ -28,5 +28,8 @@ class FieldPlayer(BehaviourTask):
         pass
 
     def _tick(self):
-        pass
+        # Tick sub task!
+        self._tick_sub_task()
+
+
 
