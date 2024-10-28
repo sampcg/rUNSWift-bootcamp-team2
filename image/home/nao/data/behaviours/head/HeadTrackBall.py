@@ -5,9 +5,9 @@ from util.Global import ballHeading, ballDistance
 
 
 class HeadTrackBall(BehaviourTask):
-    CLOSE_DISTANCE = 800.0
+    CLOSE_DISTANCE = 1000.0
 
-    BEHIND_ANGLE = radians(60)
+    BEHIND_ANGLE = radians(90)
 
     def _reset(self):
         self.PITCH_BEHIND = radians(19)
