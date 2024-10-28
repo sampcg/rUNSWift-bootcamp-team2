@@ -8,7 +8,7 @@ from body.skills.Sit import Sit
 from body.skills.ApproachBall import ApproachBall
 from util.GameStatus import penalised
 from util.Timer import WallTimer
-import os
+#import os
 
 class FieldPlayer(BehaviourTask):
     def _initialise_sub_tasks(self):
@@ -25,25 +25,20 @@ class FieldPlayer(BehaviourTask):
     def _reset(self):
         self._current_sub_task = "Stand"
         self._timer = WallTimer(self)  
-        self.flag = 0
         #os.system("aplay \Users\India\Downloads\robotfile.mp3 &")
 
     def _transition(self):
-    
-        if penalised() and self.flag == 0:
-            self._current_sub_task = "Stand"
-            self.flag = 1
-
-        if not penalised() and self.flag == 1:
+        if penalised():
+            self._current_sub_task = 'ApproachBall'
+        else:
+        
             elapsed = self._timer.elapsedSeconds()
-
             if elapsed >= 35:
                 self._current_sub_task = "Stand"
-                self.flag = 2
             elif elapsed >= 30:
                 self._current_sub_task = "Sit"
             elif elapsed >= 25:
-                self._current_sub_task = "RaiseArm"
+                self._current_sub_task = "RaiseArm"                
             elif elapsed >= 20:
                 self._current_sub_task = "Crouch"
             elif elapsed >= 15:
@@ -56,10 +51,7 @@ class FieldPlayer(BehaviourTask):
                 self._current_sub_task = "RaiseArm"
             else:
                 self._current_sub_task = "WalkInLine"
-        
-        if penalised() and self.flag == 2:
-            self._current_sub_task = "ApproachBall"
-            
+           
         
 
     def _tick(self):

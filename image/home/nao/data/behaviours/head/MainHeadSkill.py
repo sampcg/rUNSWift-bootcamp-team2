@@ -28,28 +28,30 @@ class MainHeadSkill(BehaviourTask):
         self._timer = WallTimer(self)
 
     def _transition(self):
+        
         if penalised():
             self._current_sub_task = "Track"
-        
-        elapsed = self._timer.elapsedSeconds()
-        if elapsed >= 35:
-            self._current_sub_task = "Right"
-        elif elapsed >= 30:
-            self._current_sub_task = "Left"
-        elif elapsed >= 25:
-            self._current_sub_task = "Down"
-        elif elapsed >= 15:
-            self._current_sub_task = "Centre"
-        elif elapsed >= 13:
-            self._current_sub_task = "Right"
-        elif elapsed >= 10:
-            self._current_sub_task = "Left"
-        elif elapsed >= 7:
-            self._current_sub_task = "Right"
-        elif elapsed >= 4:
-            self._current_sub_task = "Left"
         else:
-            self._current_sub_task = "Down"
+        
+            elapsed = self._timer.elapsedSeconds()
+            if elapsed >= 35:
+                self._current_sub_task = "Right"
+            elif elapsed >= 30:
+                self._current_sub_task = "Left"
+            elif elapsed >= 25:
+                self._current_sub_task = "Down"
+            elif elapsed >= 15:
+                self._current_sub_task = "Centre"
+            elif elapsed >= 13:
+                self._current_sub_task = "Right"
+            elif elapsed >= 10:
+                self._current_sub_task = "Left"
+            elif elapsed >= 7:
+                self._current_sub_task = "Right"
+            elif elapsed >= 4:
+                self._current_sub_task = "Left"
+            else:
+                self._current_sub_task = "Down"
 
     def _tick(self):
         self._tick_sub_task()

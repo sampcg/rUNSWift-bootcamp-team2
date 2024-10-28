@@ -9,4 +9,4 @@ class WalkInLine(BehaviourTask):
         self._current_sub_task = "Walk"
     
     def _tick(self):
-        self._tick_sub_task(forward=50)
+        self._tick_sub_task(forward=70)
